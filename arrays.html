@@ -33,28 +33,32 @@
         // " Daniel", " Davi", "Gabriel"];
 
 
-        let adicionar = prompt("Você deseja adicionar um nome a lista de alunos? (s/n)");
-        
-        if (adicionar == "s"){
+        let adicionar = prompt("Você deseja adicionar um nome à lista de alunos? (s/n)");
+
+        if (adicionar === "s") {
             let pergunta = prompt("Qual nome você deseja adicionar a essa lista?");
             alunos.push(pergunta);
-        }else{
-            alert("Lista de Alunos:");
+
+            let resposta = prompt("Deseja adicionar mais um nome? (s/n)");
+
+            while (resposta === "s") {
+                let nome = prompt("Digite o nome do aluno:");
+                if (nome) alunos.push(nome);
+                resposta = prompt("Deseja adicionar mais um nome? (s/n)");
+            }
         }
 
-
-
-        while (resposta == "s") {
-            let nome = prompt("Digite o nome do aluno:");
-            if (nome) alunos.push(nome);  // Adiciona o nome diretamente dentro da condição
-            resposta = prompt("Deseja adicionar mais um nome? (s/n)");
-        }
-        if (adicionar == "n") {
-            document.write("Lista de Alunos:");
+        // Exibe a lista de alunos após o fluxo de adição (seja com ou sem nomes)
+        document.write("<h3>Lista de Alunos:</h3>");
+        if (alunos.length === 0) {
+            document.write("Nenhum nome foi adicionado à lista.");
+        } else {
             for (let indice = 0; indice < alunos.length; indice++) {
                 document.write(alunos[indice] + "<br>");
             }
         }
+
+
     </script>
 </body>
 
