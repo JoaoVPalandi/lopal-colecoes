@@ -45,7 +45,9 @@
             if (alunos.length > 0) { // Verifica se a lista não está vazia
                 alunos.pop(); // Remove o último aluno da lista
                 imprimirAlunos(); // Atualiza a lista na tela
-            } 
+            } else {
+                alert("Não há mais nem um aluno na lista!");
+            }
         }
         
         imprimirAlunos(); // chama a função só no carregamento da página
