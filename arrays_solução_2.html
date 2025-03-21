@@ -42,10 +42,10 @@
         }
 
         function removerUltimoAluno() {
-            (alunos.length > 0) // Verifica se a lista não está vazia
-            alunos.pop(); // Remove o último aluno da lista
-            imprimirAlunos(); // Atualiza a lista na tela
-        
+            if (alunos.length > 0) { // Verifica se a lista não está vazia
+                alunos.pop(); // Remove o último aluno da lista
+                imprimirAlunos(); // Atualiza a lista na tela
+            } 
         }
         
         imprimirAlunos(); // chama a função só no carregamento da página
