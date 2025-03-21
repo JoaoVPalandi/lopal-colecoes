@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Alunos</title>
+</head>
+<body>
+
+    <h1>Cadastro de Alunos</h1>
+
+    <button type="button" onclick="adicionarAlunos()">Adicionar Alunos</button>
+    <button type="button" onclick="removerUltimoAluno()">Remover Último Aluno</button>
+    
+    
+    <output></output>
+
+    <script>
+        // Array para armazenar os alunos cadastrados (cada aluno é um objeto)
+        let alunos = [
+            { nome: 'João', idade: 15, sesi: 'Catumbi', temPet: true },
+            { nome: 'Heitor', idade: 16, sesi: 'Catumbi', temPet: false }
+        ];
+
+        // Função para imprimir os alunos na tela
+        function imprimirAlunos() {
+            document.querySelector('output').innerHTML = '<h1>Lista de Alunos</h1>';
+
+            // Exibe cada aluno da lista
+            for (let i = 0; i < alunos.length; i++) {
+                document.querySelector('output').innerHTML += 
+                    `<p>Nome: ${alunos[i].nome}<br>Idade: ${alunos[i].idade}<br>SESI: ${alunos[i].sesi}<br>Tem pet? ${alunos[i].temPet ? "Sim" : "Não"}<br></p>`;
+            }
+        }
+
+        // Função para adicionar alunos
+        function adicionarAlunos() {
+            // Captura os dados do aluno usando prompt
+            let nome = prompt('Digite o nome do(a) aluno(a):');
+            let idade = prompt('Digite a idade do(a) aluno(a):');
+            let sesi = prompt('Digite o SESI do(a) aluno(a):');
+            let temPet = confirm('O aluno(a) tem pet?') ? true : false;
+
+            // Cria um objeto para o novo aluno
+            let novoAluno = {
+                nome: nome,
+                idade: idade,
+                sesi: sesi,
+                temPet: temPet
+            };
+
+            // Adiciona o aluno ao array
+            alunos.push(novoAluno);
+
+            // Pergunta ao usuário se deseja adicionar outro aluno
+            let opcaoUsuario = confirm('Deseja adicionar mais um aluno?');
+            while(opcaoUsuario){
+                adicionarAlunos(); // Chama a função novamente
+                opcaoUsuario = confirm('Deseja adicionar mais um aluno?');
+            }
+
+            imprimirAlunos(); // Atualiza a lista de alunos exibida
+        }
+
+        // Função para remover o último aluno
+        function removerUltimoAluno() {
+            if (alunos.length > 0) { // Verifica se há alunos na lista
+                alunos.pop(); // Remove o último aluno
+                imprimirAlunos(); // Atualiza a lista exibida
+            } else {
+                alert("Não há mais alunos na lista!");
+            }
+        }
+
+        // Chama a função para exibir a lista inicial de alunos
+        imprimirAlunos();
+    </script>
+</body>
+</html>
