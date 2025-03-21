@@ -33,18 +33,18 @@
         // " Daniel", " Davi", "Gabriel"];
 
 
-        let adicionar = prompt("Você deseja adicionar um nome à lista de alunos? (s/n)");
+        let adicionar = prompt("Você deseja adicionar um nome à lista de alunos? (sim/não)");
 
-        if (adicionar === "s") {
+        if (adicionar.toLowerCase() === "sim") {
             let pergunta = prompt("Qual nome você deseja adicionar a essa lista?");
             alunos.push(pergunta);
 
-            let resposta = prompt("Deseja adicionar mais um nome? (s/n)");
+            let resposta = prompt("Deseja adicionar mais um nome? (sim/não)");
 
-            while (resposta === "s") {
+            while (resposta.toLowerCase() === "sim") {
                 let nome = prompt("Digite o nome do aluno:");
                 if (nome) alunos.push(nome);
-                resposta = prompt("Deseja adicionar mais um nome? (s/n)");
+                resposta = prompt("Deseja adicionar mais um nome? (sim/não)");
             }
         }
 
