@@ -4,75 +4,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arrays</title>
+    <title>Cadastro de Alunos</title>
 </head>
 
 <body>
+
+    <h1>Cadastro de Alunos</h1>
+
     <button type="button" onclick="adicionarAlunos()">Adicionar Alunos</button>
     <button type="button" onclick="removerUltimoAluno()">Remover Último Aluno</button>
-    <br>
+
+
     <output></output>
 
     <script>
-        let alunos = [];
+        // Array para armazenar os alunos cadastrados (cada aluno é um objeto)
+        let alunos = [
+            { nome: 'João', idade: 15, sesi: 'Catumbi', temPet: true },
+            { nome: 'Heitor', idade: 16, sesi: 'Catumbi', temPet: false }
+        ];
 
+        // Função para imprimir os alunos na tela
         function imprimirAlunos() {
+            document.querySelector('output').innerHTML = '<h1>Lista de Alunos</h1>';
 
-            const output = document.querySelector('output');
-
-            output.innerHTML = '<h1>Lista de alunos</h1>';
-
+            // Exibe cada aluno da lista
             for (let i = 0; i < alunos.length; i++) {
-
-                output.innerHTML += `
-                <p>
-                    Nome: ${alunos[i].nome}<br>
+                document.querySelector('output').innerHTML +=
+                    `<p>Nome:${alunos[i].nome}<br>
                     Idade: ${alunos[i].idade}<br>
                     SESI: ${alunos[i].sesi}<br>
-                    Tem pet? ${alunos[i].temPet ? "Sim" : "Não"}
-                </p>
-                `;
+                    Tem pet? ${alunos[i].temPet ? "Sim" : "Não"}<br></p>`;
             }
-
         }
 
+        // Função para adicionar alunos
         function adicionarAlunos() {
+            // Captura os dados do aluno usando prompt
+            let nome = prompt('Digite o nome do(a) aluno(a):');
+            let idade = parseInt(prompt('Digite a idade do(a) aluno(a):'));
+            let sesi = prompt('Digite o SESI do(a) aluno(a):');
+            let temPet = confirm('O aluno(a) tem pet?') ? true : false;
 
+            // Cria um objeto para o novo aluno
             let novoAluno = {
-                nome: prompt('Digite o NOME do(a) aluno(a):'),
-                idade: parseInt(prompt('Digite a IDADE do(a) aluno(a):')),
-                sesi: prompt('Digite o SESI do(a) aluno(a):'),
-                temPet: confirm('O(a) aluno(a) tem pet?')
+                nome: nome,
+                idade: idade,
+                sesi: sesi,
+                temPet: temPet
             };
 
+            // Adiciona o aluno ao array
             alunos.push(novoAluno);
 
-            opcaoUsuario = confirm('Deseja Adicionar mais um aluno?');
-
-            while(opcaoUsuario) {
-                adicionarAlunos();
+            // Pergunta ao usuário se deseja adicionar outro aluno
+            let opcaoUsuario = confirm('Deseja adicionar mais um aluno?');
+            while (opcaoUsuario) {
+                adicionarAlunos(); // Chama a função novamente
+                opcaoUsuario = confirm('Deseja adicionar mais um aluno?');
             }
 
-            imprimirAlunos(); // chama a função sempre que alunos são adicionados
-
+            imprimirAlunos(); // Atualiza a lista de alunos exibida
         }
 
+        // Função para remover o último aluno
         function removerUltimoAluno() {
-
-            if (alunos.length > 0) {
-
-                alunos.pop();
-    
-                imprimirAlunos();
-                
+            if (alunos.length > 0) { // Verifica se há alunos na lista
+                alunos.pop(); // Remove o último aluno
+                imprimirAlunos(); // Atualiza a lista exibida
             } else {
-                alert('Não há mais nenhum aluno na lista.');
+                alert("Não há mais alunos na lista!");
             }
-
         }
 
-        imprimirAlunos(); // chama a função só no carregamento da página
-
+        // Chama a função para exibir a lista inicial de alunos
+        imprimirAlunos();
     </script>
 </body>
 
