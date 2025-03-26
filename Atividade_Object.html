@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Alunos</title>
 </head>
+
 <body>
 
     <h1>Cadastro de Alunos</h1>
 
     <button type="button" onclick="adicionarAlunos()">Adicionar Alunos</button>
     <button type="button" onclick="removerUltimoAluno()">Remover Último Aluno</button>
-    
-    
+
+
     <output></output>
 
     <script>
@@ -28,8 +30,11 @@
 
             // Exibe cada aluno da lista
             for (let i = 0; i < alunos.length; i++) {
-                document.querySelector('output').innerHTML += 
-                    `<p>Nome: ${alunos[i].nome}<br>Idade: ${alunos[i].idade}<br>SESI: ${alunos[i].sesi}<br>Tem pet? ${alunos[i].temPet ? "Sim" : "Não"}<br></p>`;
+                document.querySelector('output').innerHTML +=
+                    `<p>Nome:${alunos[i].nome}<br>
+                    Idade: ${alunos[i].idade}<br>
+                    SESI: ${alunos[i].sesi}<br>
+                    Tem pet? ${alunos[i].temPet ? "Sim" : "Não"}<br></p>`;
             }
         }
 
@@ -37,7 +42,7 @@
         function adicionarAlunos() {
             // Captura os dados do aluno usando prompt
             let nome = prompt('Digite o nome do(a) aluno(a):');
-            let idade = prompt('Digite a idade do(a) aluno(a):');
+            let idade = parseInt(prompt('Digite a idade do(a) aluno(a):'));
             let sesi = prompt('Digite o SESI do(a) aluno(a):');
             let temPet = confirm('O aluno(a) tem pet?') ? true : false;
 
@@ -54,7 +59,7 @@
 
             // Pergunta ao usuário se deseja adicionar outro aluno
             let opcaoUsuario = confirm('Deseja adicionar mais um aluno?');
-            while(opcaoUsuario){
+            while (opcaoUsuario) {
                 adicionarAlunos(); // Chama a função novamente
                 opcaoUsuario = confirm('Deseja adicionar mais um aluno?');
             }
@@ -76,4 +81,5 @@
         imprimirAlunos();
     </script>
 </body>
+
 </html>
